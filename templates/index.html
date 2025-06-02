@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎲 Dice Roller</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Roll the Dice 🎲</h1>
+      <div id="dice">🎲</div>
+      <p id="result"></p>
+      <button onclick="rollDice()">Roll Dice</button>
+    </div>
+
+    <script>
+      function rollDice() {
+        fetch("/roll")
+          .then((res) => res.json())
+          .then((data) => {
+            document.getElementById("dice").textContent = data.face;
+            document.getElementById(
+              "result"
+            ).textContent = `You rolled a ${data.number}`;
+          });
+      }
+    </script>
+  </body>
+</html>
